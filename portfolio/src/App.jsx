@@ -229,7 +229,6 @@ export default function App() {
 
             <div className="flex md:flex-col justify-between md:text-right font-mono text-xs uppercase tracking-widest text-neutral-300 md:self-start pt-1 md:pt-0 pb-2 md:pb-4 shrink-0 pl-4 md:pl-8 z-10 md:-translate-y-8">
               <span className="text-[#ff5500] font-bold text-sm tracking-wider">(00) / FOLIO</span>
-              <span className="text-neutral-200">CREATIVE DEV 2026</span>
               <span className="text-neutral-400 text-[11px]">HO CHI MINH CITY, VN</span>
             </div>
           </div>
