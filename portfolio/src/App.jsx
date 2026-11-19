@@ -256,9 +256,6 @@ export default function App() {
           {/* Line 2: Status on Left + NGUYEN on Right (bilateral fade on text only) */}
           <div className="flex flex-col-reverse md:flex-row md:items-baseline justify-between w-full mt-0 md:mt-2">
             <div className="flex items-center gap-3 pt-2 md:pt-0 pb-2 md:pb-4 font-mono text-xs uppercase tracking-widest text-neutral-300 shrink-0 pr-4 md:pr-8 z-10">
-              <span className="glass-pill px-4 py-1.5 rounded-full text-xs text-neutral-100 font-medium border border-white/20 shadow-sm">
-                OPEN FOR OJT 2026
-              </span>
             </div>
 
             <div className="flex-1 min-w-0 text-left md:text-right">
