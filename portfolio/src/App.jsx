@@ -489,9 +489,6 @@ export default function App() {
                 <p className="text-sm text-neutral-300 font-light leading-relaxed">
                   Software Engineering student at FPT University. I often listen to music while programming interfaces for physical interactions. I also love animal rescue initiatives (helped fundraise for Saigon shelter via GoGoMeme) and I have a deep passion for the arts, including both music and painting.
                 </p>
-                <p className="text-xs text-neutral-400 font-mono pt-1">
-                  Looking for Frontend / Full-Stack Developer OJT opportunities.
-                </p>
                 <a
                   href="#contact"
                   className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-neutral-200 hover:text-[#ff5500] underline underline-offset-8 transition-colors pt-1 cursor-pointer"
