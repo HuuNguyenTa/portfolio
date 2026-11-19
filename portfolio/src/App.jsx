@@ -350,8 +350,6 @@ export default function App() {
                 <div className="px-6 md:px-12 flex flex-wrap items-center justify-between gap-3 text-xs font-mono tracking-widest text-neutral-400 mb-3">
                   <div className="flex items-center gap-3">
                     <span className="text-[#ff5500] font-semibold">{project.id}</span>
-                    <span>/</span>
-                    <span className="uppercase text-neutral-300">{project.category}</span>
                   </div>
 
                   <div className="flex items-center gap-4 text-neutral-400 uppercase text-[11px]">
