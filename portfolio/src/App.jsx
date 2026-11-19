@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'motion/react';
-import { 
-  ArrowUpRight, 
-  Copy, 
-  Check 
+import {
+  ArrowUpRight,
+  Copy,
+  Check
 } from 'lucide-react';
 import projects from './data/projects.json';
 import credentials from './data/credentials.json';
@@ -61,11 +61,10 @@ export default function App() {
     restDelta: 0.0001
   });
 
-  // At scroll = 0, both FRONT and END start at 0px offset (cohesive, not pre-stretched).
-  // As user scrolls down, FRONT glides smoothly left, END glides right, dash expands!
-  const frontX = useTransform(smoothHeroProgress, [0, 0.65], [0, -110]);
-  const endX = useTransform(smoothHeroProgress, [0, 0.65], [0, 110]);
-  const dashScaleX = useTransform(smoothHeroProgress, [0, 0.65], [1, 2.8]);
+  // As user scrolls down, TA HUU and NGUYEN stretch and glide smoothly!
+  const frontX = useTransform(smoothHeroProgress, [0, 0.65], [0, -45]);
+  const endX = useTransform(smoothHeroProgress, [0, 0.65], [0, 45]);
+  const letterSpacing = useTransform(smoothHeroProgress, [0, 0.65], ["-0.03em", "0.06em"]);
   const heroOpacity = useTransform(smoothHeroProgress, [0, 0.85], [1, 0.3]);
   const heroScale = useTransform(smoothHeroProgress, [0, 0.85], [1, 0.96]);
 
@@ -166,107 +165,112 @@ export default function App() {
         style={{ scaleX }}
       />
 
-      {/* 1. TOP NAVIGATION BAR (CLEAN, NO AI DOTS/PILLS) */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl bg-[#0a0a0a]/80 border-b border-white/10 px-6 md:px-12 py-4 flex justify-between items-center transition-all duration-300">
-        <div>
-          <p className="font-syne font-bold text-sm tracking-wider uppercase">TẠ HỮU NGUYÊN</p>
-          <p className="text-neutral-400 font-mono text-[10px] tracking-widest">FRONTEND DEVELOPER</p>
+      {/* 1. TOP NAVIGATION BAR (REMOVED TA HUU NGUYEN AS REQUESTED) */}
+      <header className="sticky top-0 z-50 backdrop-blur-xl bg-[#0e0e0e]/85 border-b border-white/10 px-6 md:px-12 py-4 flex justify-between items-center transition-all duration-300">
+        <div className="font-mono text-xs uppercase tracking-wider leading-tight text-neutral-400">
+          <p className="text-neutral-200 font-semibold">Welcome!</p>
+          
         </div>
 
-        <div className="hidden md:flex items-center gap-6 font-mono text-xs tracking-widest text-neutral-400">
-          <span>FOLIO / 2026</span>
-          <span>SAIGON, VN • {hcmTime || '14:26:08'}</span>
+        <div className="font-mono text-xs uppercase tracking-wider leading-tight text-neutral-500">
+          <p className="text-neutral-200 font-semibold">TẠ HỮU NGUYÊN</p>
+          <p className="text-neutral-500 text-[11px]">FOLIO | 2024 -2026</p>
         </div>
 
         <div className="flex items-center gap-3">
           <a
             href="#projects"
-            className="hidden sm:inline-block font-mono text-xs uppercase tracking-wider text-neutral-400 hover:text-white transition-colors px-2 py-1"
+            className="hidden md:inline-block font-mono text-xs uppercase tracking-wider text-neutral-400 hover:text-white transition-colors px-2 py-1"
           >
             Works
           </a>
           <a
             href="#credentials"
-            className="hidden sm:inline-block font-mono text-xs uppercase tracking-wider text-neutral-400 hover:text-white transition-colors px-2 py-1"
+            className="hidden md:inline-block font-mono text-xs uppercase tracking-wider text-neutral-400 hover:text-white transition-colors px-2 py-1"
           >
             Awards
           </a>
           <a
             href="#contact"
-            className="glass-pill px-5 py-2 rounded-full font-mono text-xs uppercase tracking-widest text-neutral-100 flex items-center gap-1.5"
+            className="border border-white/25 hover:border-white hover:text-[#ff5500] px-5 py-1.5 rounded-full font-mono text-xs uppercase tracking-widest text-neutral-200 transition-colors cursor-pointer"
           >
-            <span>Contact</span>
-            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            (CONTACT)
           </a>
         </div>
       </header>
 
-      {/* 2. HERO SECTION (SCROLL-STRETCH ONLY ON SCROLL) */}
-      <section 
-        ref={heroRef} 
-        className="relative px-6 md:px-12 pt-16 md:pt-24 pb-20 md:pb-28 border-b border-white/10 overflow-hidden"
+      {/* 2. HERO SECTION (FULL HERO, BILATERAL EDGE FADE ONLY ON TA HUU NGUYEN) */}
+      <section
+        ref={heroRef}
+        className="relative px-6 md:px-12 pt-6 md:pt-10 pb-10 md:pb-14 border-b border-white/10 overflow-hidden bg-[#0e0e0e] min-h-[calc(100vh-70px)] flex flex-col justify-between"
       >
-        <motion.div 
-          style={{ opacity: heroOpacity, scale: heroScale }}
-          className="relative select-none"
+        <motion.div
+          style={{ 
+            opacity: heroOpacity, 
+            scale: heroScale
+          }}
+          className="relative select-none flex-1 flex flex-col justify-center my-auto"
         >
-          {/* Main Kinetic Headline: "FRONT —— END" 
-              At scroll = 0, FRONT and END sit together naturally with a normal gap and clean dash.
-              When scrolling down, they smoothly pull apart to both sides! */}
-          <div className="overflow-hidden flex items-center justify-start gap-4 sm:gap-6 md:gap-8 whitespace-nowrap">
-            <motion.div 
-              style={{ x: frontX }}
-              className="font-display text-[15vw] md:text-[14vw] leading-[0.82] font-black tracking-tight uppercase text-neutral-100"
-            >
-              FRONT
-            </motion.div>
+          {/* Line 1: TA HUU on left (bilateral fade on text only) + Portfolio metadata on right (100% crisp & visible) */}
+          <div className="flex flex-col md:flex-row md:items-baseline justify-between w-full">
+            <div className="flex-1 min-w-0">
+              <motion.h1
+                style={{ 
+                  x: frontX, 
+                  letterSpacing,
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)'
+                }}
+                className="font-display text-[28vw] sm:text-[26vw] md:text-[24vw] lg:text-[22vw] leading-[0.74] font-black uppercase text-[#858585] tracking-tight hover:text-white transition-colors duration-300 cursor-default inline-block"
+              >
+                TA HUU
+              </motion.h1>
+            </div>
 
-            {/* Middle dash that scales horizontally on scroll */}
-            <motion.div 
-              style={{ scaleX: dashScaleX }}
-              className="origin-left h-[4px] sm:h-[6px] md:h-[8px] w-12 sm:w-20 md:w-32 bg-neutral-600 rounded-full shrink-0"
-            />
-
-            <motion.div 
-              style={{ x: endX }}
-              className="font-display text-[15vw] md:text-[14vw] leading-[0.82] font-black tracking-tight uppercase text-neutral-100"
-            >
-              END
-            </motion.div>
+            <div className="flex md:flex-col justify-between md:text-right font-mono text-xs uppercase tracking-widest text-neutral-300 pt-2 md:pt-0 pb-2 md:pb-4 shrink-0 pl-4 md:pl-8 z-10">
+              <span className="text-[#ff5500] font-bold text-sm tracking-wider">(00) / FOLIO</span>
+              <span className="text-neutral-200">CREATIVE DEV 2026</span>
+              <span className="text-neutral-400 text-[11px]">HO CHI MINH CITY, VN</span>
+            </div>
           </div>
 
-          {/* Sub headline: "DEVELOPER" */}
-          <div className="overflow-hidden mt-1 md:mt-2 text-right">
-            <motion.h1 
-              style={{ x: endX }}
-              className="font-display text-[15vw] md:text-[14vw] leading-[0.82] font-black tracking-tight uppercase text-[#9e9e9e] hover:text-[#ff5500] transition-colors duration-500 cursor-default"
-            >
-              DEVELOPER
-            </motion.h1>
+          {/* Line 2: Status & Scroll on Left (100% crisp & visible) + NGUYEN on Right (bilateral fade on text only) */}
+          <div className="flex flex-col-reverse md:flex-row md:items-baseline justify-between w-full mt-[-2vw] sm:mt-[-1.5vw]">
+            <div className="flex items-center gap-3 pt-2 md:pt-0 pb-2 md:pb-4 font-mono text-xs uppercase tracking-widest text-neutral-300 shrink-0 pr-4 md:pr-8 z-10">
+
+            </div>
+
+            <div className="flex-1 min-w-0 text-left md:text-right">
+              <motion.h1
+                style={{ 
+                  x: endX, 
+                  letterSpacing,
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)'
+                }}
+                className="font-display text-[28vw] sm:text-[26vw] md:text-[24vw] lg:text-[22vw] leading-[0.74] font-black uppercase text-[#858585] hover:text-[#ff5500] transition-colors duration-500 tracking-tight cursor-default inline-block"
+              >
+                NGUYEN
+              </motion.h1>
+            </div>
           </div>
         </motion.div>
 
-        {/* Hero Bio & Status Strip */}
-        <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
-          <div className="md:col-span-4 font-mono text-xs uppercase tracking-widest text-neutral-400 flex flex-col gap-2">
-            <div className="flex items-center gap-2">
-              <span className="text-[#ff5500] font-bold">(00)</span>
-              <span>ABOUT ME — HO CHI MINH CITY</span>
-            </div>
-            <p className="text-neutral-500 text-[11px] normal-case">
-              FPT University Software Engineering • Expected Grad 2027
+        {/* Bottom Balanced Strip (Core Specialty removed, faint line removed) */}
+        <div className="mt-6 md:mt-8 pt-2 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+          {/* About Me Description */}
+          <div className="md:col-span-7 space-y-2">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#ff5500] font-semibold block">
+              ABOUT ME
+            </span>
+            <p className="text-sm md:text-base text-neutral-200 font-light leading-relaxed max-w-2xl">
+              Software Engineering student at <strong className="text-white font-medium">FPT University</strong>, passionate about engineering scalable web applications and clean interfaces with <strong className="text-white font-medium">React, Node.js, and Modern UI Architecture</strong> — currently open for Software Engineering OJT opportunities.
             </p>
           </div>
 
-          <div className="md:col-span-8 space-y-7">
-            <p className="text-xl md:text-3xl font-light leading-snug text-neutral-200">
-              I am a developer based in{' '}
-              <span className="text-white font-medium underline decoration-white/30 underline-offset-4">Ho Chi Minh City</span>{' '}
-              focused on building high-performance, responsive web applications and tactile digital experiences with{' '}
-              <span className="text-white font-semibold">React, Node.js, and Modern UI Architecture</span>.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3 pt-1">
+          {/* Social Links & Action */}
+          <div className="md:col-span-5 flex flex-col items-start md:items-end justify-between gap-4">
+            <div className="flex flex-wrap items-center gap-2">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -275,30 +279,29 @@ export default function App() {
                     href={social.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="glass-pill px-4 py-2 rounded-full font-mono text-xs uppercase tracking-widest text-neutral-300 flex items-center gap-2 group cursor-pointer"
+                    className="glass-pill px-3.5 py-1.5 rounded-full font-mono text-[11px] uppercase tracking-wider text-neutral-300 flex items-center gap-1.5 hover:text-[#ff5500] transition-colors"
                   >
-                    <Icon className="w-3.5 h-3.5 text-neutral-400 group-hover:text-[#ff5500] transition-colors" />
+                    <Icon className="w-3.5 h-3.5 text-neutral-400" />
                     <span>{social.name}</span>
-                    <ArrowUpRight className="w-3 h-3 text-neutral-500 group-hover:text-[#ff5500] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </a>
                 );
               })}
-
-              <a
-                href="#projects"
-                className="glass-pill px-4 py-2 rounded-full font-mono text-xs uppercase tracking-widest text-[#ff5500] border-[#ff5500]/40 flex items-center gap-2"
-              >
-                <span>Explore Works ({projects.length})</span>
-                <span className="text-xs">↓</span>
-              </a>
             </div>
+
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#ff5500] hover:text-white transition-colors cursor-pointer group pt-1"
+            >
+              <span>EXPLORE WORKS ({projects.length})</span>
+              <span className="text-sm group-hover:translate-y-0.5 transition-transform">↓</span>
+            </a>
           </div>
         </div>
       </section>
 
       {/* 3. FEATURED PROJECTS (ALTERNATING CONTINUOUS MARQUEE + HOVER PAUSE & ORANGE GLOW) */}
-      <section 
-        id="projects" 
+      <section
+        id="projects"
         className="py-20 md:py-28 border-b border-white/10 overflow-hidden"
       >
         <div className="px-6 md:px-12 flex flex-col sm:flex-row justify-between items-start sm:items-baseline gap-4 mb-14">
@@ -307,13 +310,10 @@ export default function App() {
               <span className="text-[#ff5500] font-bold">(01)</span>
               <h2>FEATURED PROJECTS ({projects.length})</h2>
             </div>
-            <p className="text-neutral-500 text-xs font-mono">
-              Hover to pause & inspect • Alternating continuous kinetic ticker
-            </p>
           </div>
 
           <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest">
-            Selected Works 2025 — 2026
+            Selected Works 2024 — 2026
           </span>
         </div>
 
@@ -334,13 +334,12 @@ export default function App() {
                 <div className="px-6 md:px-12 flex flex-wrap items-center justify-between gap-3 text-xs font-mono tracking-widest text-neutral-400 mb-3">
                   <div className="flex items-center gap-3">
                     <span className="text-[#ff5500] font-semibold">{project.id}</span>
-                    <span>/</span>
                     <span className="uppercase text-neutral-300">{project.category}</span>
                   </div>
 
                   <div className="flex items-center gap-4 text-neutral-400 uppercase text-[11px]">
                     <span className={project.status === 'LIVE' ? 'text-emerald-400' : 'text-neutral-400'}>
-                      {project.status === 'LIVE' ? '● LIVE' : 'IN PROGRESS'}
+                      {project.status === 'LIVE' ? 'LIVE' : 'IN PROGRESS'}
                     </span>
                     <span className="hidden sm:inline text-neutral-500">
                       {project.tech.slice(0, 3).join(' • ')}
@@ -356,11 +355,10 @@ export default function App() {
                   <div className={isEven ? "project-marquee-left" : "project-marquee-right"}>
                     {/* Block 1 */}
                     <div className="flex items-center gap-8 sm:gap-14 whitespace-nowrap shrink-0 pr-8 sm:pr-14">
-                      <h3 className={`font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight uppercase leading-[0.88] transition-all duration-300 ${
-                        isHovered 
-                          ? 'text-[#ff5500] drop-shadow-[0_0_40px_rgba(255,85,0,0.4)]' 
+                      <h3 className={`font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight uppercase leading-[0.88] transition-all duration-300 ${isHovered
+                          ? 'text-[#ff5500] drop-shadow-[0_0_40px_rgba(255,85,0,0.4)]'
                           : 'text-neutral-300 group-hover:text-[#ff5500]'
-                      }`}>
+                        }`}>
                         {project.title}
                       </h3>
                       <span className="text-neutral-600 font-display text-4xl sm:text-6xl md:text-7xl select-none">—</span>
@@ -372,11 +370,10 @@ export default function App() {
 
                     {/* Block 2 (Seamless loop duplicate) */}
                     <div className="flex items-center gap-8 sm:gap-14 whitespace-nowrap shrink-0 pr-8 sm:pr-14">
-                      <h3 className={`font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight uppercase leading-[0.88] transition-all duration-300 ${
-                        isHovered 
-                          ? 'text-[#ff5500] drop-shadow-[0_0_40px_rgba(255,85,0,0.4)]' 
+                      <h3 className={`font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight uppercase leading-[0.88] transition-all duration-300 ${isHovered
+                          ? 'text-[#ff5500] drop-shadow-[0_0_40px_rgba(255,85,0,0.4)]'
                           : 'text-neutral-300 group-hover:text-[#ff5500]'
-                      }`}>
+                        }`}>
                         {project.title}
                       </h3>
                       <span className="text-neutral-600 font-display text-4xl sm:text-6xl md:text-7xl select-none">—</span>
@@ -393,23 +390,12 @@ export default function App() {
                   <div className="h-[2px] w-0 group-hover:w-full bg-gradient-to-r from-[#ff5500] via-orange-400 to-transparent transition-all duration-700 ease-out"></div>
                 </div>
 
-                {/* Project Description, Tech Tags & Glass Action Buttons */}
+                {/* Project Description & Glass Action Buttons */}
                 <div className="px-6 md:px-12 mt-4 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-                  <div className="max-w-2xl space-y-4">
+                  <div className="max-w-2xl">
                     <p className="text-sm md:text-base text-neutral-400 leading-relaxed font-light">
                       {project.description}
                     </p>
-
-                    <div className="flex flex-wrap gap-2 pt-1 font-mono text-[11px] text-neutral-400">
-                      {project.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="px-2.5 py-0.5 rounded-full bg-white/[0.03] border border-white/10 text-neutral-300"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
                   </div>
 
                   {/* Glassmorphic Action Buttons */}
@@ -445,14 +431,14 @@ export default function App() {
       {/* 4. AWARDS X RECOGNITION (STICKY LEFT COLUMN + SCROLL-ANIMATED LIST) */}
       <section id="credentials" className="px-6 md:px-12 py-20 md:py-28 border-b border-white/10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
+
           {/* LEFT COLUMN: FIXED / STICKY AS USER SCROLLS (Matches user request) */}
           <div className="lg:col-span-5 lg:sticky lg:top-24 self-start space-y-10">
             <div className="space-y-4">
               <span className="font-mono text-xs uppercase tracking-widest text-[#ff5500] font-semibold block">
                 (02) / CREDENTIALS & HONORS
               </span>
-              <h2 className="font-syne text-4xl sm:text-5xl font-black uppercase tracking-tight text-neutral-100 leading-[0.95]">
+              <h2 className="font-syne text-4xl sm:text-5xl font-black uppercase tracking-tight text-neutral-50 leading-[0.95]">
                 AWARDS X<br />RECOGNITION
               </h2>
               <p className="text-sm text-neutral-400 font-light leading-relaxed max-w-md">
@@ -487,7 +473,7 @@ export default function App() {
                   ICEBREAKERS
                 </span>
                 <p className="text-sm text-neutral-300 font-light leading-relaxed">
-                  Software Engineering student at FPT University. I listen to Alt & Electronic music while coding tactile interfaces. I also love animal rescue initiatives (helped fundraise for Saigon shelter via GoGoMeme) and exploring modern typography.
+                  Software Engineering student at FPT University. I often listen to music while programming interfaces for physical interactions. I also love animal rescue initiatives (helped fundraise for Saigon shelter via GoGoMeme) and I have a deep passion for the arts, including both music and painting.
                 </p>
                 <p className="text-xs text-neutral-400 font-mono pt-1">
                   Looking for Frontend / Full-Stack Developer OJT opportunities.
@@ -569,9 +555,9 @@ export default function App() {
                 <span className="mx-6 text-neutral-600">—</span>
                 <span>WANNA BE STARTING SOMETHING?</span>
                 <span className="mx-6 text-neutral-600">—</span>
-                <span className="text-[#ff5500]">OPEN FOR OJT 2026</span>
+                <span>OPEN FOR OJT 2026</span>
                 <span className="mx-6 text-neutral-600">—</span>
-                <span>TẠ HỮU NGUYÊN</span>
+                <span>TA HUU NGUYEN</span>
               </div>
             ))}
           </div>
