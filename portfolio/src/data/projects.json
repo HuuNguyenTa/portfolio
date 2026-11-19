@@ -1,0 +1,42 @@
+[
+  {
+    "id": "01",
+    "category": "Full-Stack Web / Enterprise Portal",
+    "title": "BOOK STREET HERITAGE PORTAL",
+    "description": "Cổng thông tin quản lý di sản, thư viện số và lịch sự kiện cho Đường Sách TP.HCM & TP. Thủ Đức. Tích hợp RESTful API, PostgreSQL và kiểm thử tự động E2E với Playwright.",
+    "tech": ["React", "Vite", "Tailwind CSS", "PostgreSQL", "Playwright"],
+    "status": "LIVE",
+    "liveUrl": "https://deploy-web-nha-sach.vercel.app/",
+    "repoUrl": "https://github.com/HuuNguyenTa"
+  },
+  {
+    "id": "02",
+    "category": "Community Platform / Social Impact",
+    "title": "GOGO & MEOMEO RESCUE STATION",
+    "description": "Trạm cứu hộ ảo kết nối cộng đồng yêu động vật với Team 16 Sài Gòn & Nhà Xanh. Đạt hơn 14.800 lượt tiếp cận và hỗ trợ chiến dịch gây quỹ thực tế.",
+    "tech": ["React", "JavaScript", "Supabase", "Vercel"],
+    "status": "LIVE",
+    "liveUrl": "https://gogomeme.vercel.app/",
+    "repoUrl": "https://github.com/HuuNguyenTa"
+  },
+  {
+    "id": "03",
+    "category": "UI/UX Design / Frontend Architecture",
+    "title": "PET HAVEN ADOPTION SYSTEM",
+    "description": "Giao diện hệ thống quản lý và đăng ký nhận nuôi thú cưng với bộ lọc trạng thái thời gian thực và điều hướng SPA mượt mà.",
+    "tech": ["React", "Vite", "HashRouter", "CSS3"],
+    "status": "IN PROGRESS",
+    "liveUrl": "https://huunguyenta.github.io/pet-haven/",
+    "repoUrl": "https://github.com/HuuNguyenTa"
+  },
+  {
+    "id": "04",
+    "category": "E-Commerce UI / Responsive Web",
+    "title": "ORCHID BOUTIQUE STOREFRONT",
+    "description": "Giao diện thương mại điện tử chuyên biệt cho hoa lan nghệ thuật, tối ưu hóa trải nghiệm xem chi tiết sản phẩm và giỏ hàng trên di động.",
+    "tech": ["React", "Vite", "Tailwind CSS"],
+    "status": "IN PROGRESS",
+    "liveUrl": "",
+    "repoUrl": "https://github.com/HuuNguyenTa"
+  }
+]
