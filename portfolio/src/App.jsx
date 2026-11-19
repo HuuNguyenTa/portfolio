@@ -211,8 +211,8 @@ export default function App() {
           }}
           className="relative select-none flex-1 flex flex-col justify-center my-auto"
         >
-          {/* Line 1: TA HUU on left (bilateral fade on text only) + Portfolio metadata on right (100% crisp & visible) */}
-          <div className="flex flex-col md:flex-row md:items-baseline justify-between w-full">
+          {/* Line 1: TA HUU on left (bilateral fade on text only) + Portfolio metadata on right (shifted up, completely clear of NGUYEN) */}
+          <div className="flex flex-col md:flex-row md:items-start justify-between w-full">
             <div className="flex-1 min-w-0">
               <motion.h1
                 style={{ 
@@ -227,17 +227,38 @@ export default function App() {
               </motion.h1>
             </div>
 
-            <div className="flex md:flex-col justify-between md:text-right font-mono text-xs uppercase tracking-widest text-neutral-300 pt-2 md:pt-0 pb-2 md:pb-4 shrink-0 pl-4 md:pl-8 z-10">
+            <div className="flex md:flex-col justify-between md:text-right font-mono text-xs uppercase tracking-widest text-neutral-300 md:self-start pt-1 md:pt-0 pb-2 md:pb-4 shrink-0 pl-4 md:pl-8 z-10 md:-translate-y-8">
               <span className="text-[#ff5500] font-bold text-sm tracking-wider">(00) / FOLIO</span>
               <span className="text-neutral-200">CREATIVE DEV 2026</span>
               <span className="text-neutral-400 text-[11px]">HO CHI MINH CITY, VN</span>
             </div>
           </div>
 
-          {/* Line 2: Status & Scroll on Left (100% crisp & visible) + NGUYEN on Right (bilateral fade on text only) */}
-          <div className="flex flex-col-reverse md:flex-row md:items-baseline justify-between w-full mt-[-2vw] sm:mt-[-1.5vw]">
-            <div className="flex items-center gap-3 pt-2 md:pt-0 pb-2 md:pb-4 font-mono text-xs uppercase tracking-widest text-neutral-300 shrink-0 pr-4 md:pr-8 z-10">
+          {/* Center Indicator: SCROLL DOWN with Animated Neon Bouncing Arrow (ở giữa hero) */}
+          <div className="flex justify-center items-center py-4 md:py-6 z-20">
+            <a
+              href="#projects"
+              className="group inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.25em] text-neutral-300 hover:text-white transition-all duration-300 cursor-pointer py-2 px-5 rounded-full border border-white/15 hover:border-[#ff5500] bg-black/60 hover:bg-[#ff5500]/15 backdrop-blur-md shadow-lg"
+            >
+              <span className="group-hover:text-[#ff5500] transition-colors font-medium text-xs">
+                SCROLL DOWN
+              </span>
+              <motion.span
+                animate={{ y: [0, 6, 0] }}
+                transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+                className="text-[#ff5500] text-sm font-bold inline-block drop-shadow-[0_0_10px_rgba(255,85,0,0.9)]"
+              >
+                ↓
+              </motion.span>
+            </a>
+          </div>
 
+          {/* Line 2: Status on Left + NGUYEN on Right (bilateral fade on text only) */}
+          <div className="flex flex-col-reverse md:flex-row md:items-baseline justify-between w-full mt-0 md:mt-2">
+            <div className="flex items-center gap-3 pt-2 md:pt-0 pb-2 md:pb-4 font-mono text-xs uppercase tracking-widest text-neutral-300 shrink-0 pr-4 md:pr-8 z-10">
+              <span className="glass-pill px-4 py-1.5 rounded-full text-xs text-neutral-100 font-medium border border-white/20 shadow-sm">
+                OPEN FOR OJT 2026
+              </span>
             </div>
 
             <div className="flex-1 min-w-0 text-left md:text-right">
@@ -292,8 +313,6 @@ export default function App() {
               href="#projects"
               className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#ff5500] hover:text-white transition-colors cursor-pointer group pt-1"
             >
-              <span>EXPLORE WORKS ({projects.length})</span>
-              <span className="text-sm group-hover:translate-y-0.5 transition-transform">↓</span>
             </a>
           </div>
         </div>
@@ -334,6 +353,7 @@ export default function App() {
                 <div className="px-6 md:px-12 flex flex-wrap items-center justify-between gap-3 text-xs font-mono tracking-widest text-neutral-400 mb-3">
                   <div className="flex items-center gap-3">
                     <span className="text-[#ff5500] font-semibold">{project.id}</span>
+                    <span>/</span>
                     <span className="uppercase text-neutral-300">{project.category}</span>
                   </div>
 
